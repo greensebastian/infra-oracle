@@ -8,8 +8,10 @@ spec:
   project: default
   source:
     repoURL: https://github.com/greensebastian/infra-oracle
-    targetRevision: HEAD
+    targetRevision: main
     path: apps
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

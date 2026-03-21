@@ -166,19 +166,3 @@ resource "oci_core_instance" "free_vm" {
     user_data           = base64encode(file("${path.module}/cloud-init.sh"))
   }
 }
-
-# -- Persistent volume
-
-resource "oci_core_volume" "main" {
-  compartment_id      = var.compartment_ocid
-  availability_domain = data.oci_identity_availability_domains.ads.availability_domains[0].name
-  display_name        = "free-tier-main-volume"
-  size_in_gbs         = 50
-}
-
-resource "oci_core_volume_attachment" "main" {
-  attachment_type = "paravirtualized"
-  instance_id     = oci_core_instance.free_vm.id
-  volume_id       = oci_core_volume.main.id
-  display_name    = "free-tier-main-volume-attachment"
-}
