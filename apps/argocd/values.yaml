@@ -2,6 +2,8 @@
 configs:
   params:
     server.insecure: true
+  cm:
+    url: https://argo.oci.sebastiangreen.se
 
 server:
   ingress:
