@@ -5,6 +5,7 @@ global:
 configs:
   params:
     server.insecure: true
+    timeout.reconciliation: 30s
 
 server:
   ingress:
