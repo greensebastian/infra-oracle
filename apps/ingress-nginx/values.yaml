@@ -1,0 +1,4 @@
+# apps/ingress-nginx/values.yaml
+controller:
+  service:
+    type: LoadBalancer

@@ -1,0 +1,27 @@
+# apps/cert-manager/app.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: cert-manager
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/greensebastian/infra-oracle
+      targetRevision: HEAD
+      ref: values
+    - repoURL: https://charts.jetstack.io
+      chart: cert-manager
+      targetRevision: "*"
+      helm:
+        valueFiles:
+          - $values/apps/cert-manager/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

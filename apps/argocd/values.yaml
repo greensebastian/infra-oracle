@@ -1,0 +1,17 @@
+# apps/argocd/values.yaml
+configs:
+  params:
+    server.insecure: true
+
+server:
+  ingress:
+    enabled: true
+    ingressClassName: nginx
+    hosts:
+      - argo.oci.sebastiangreen.se
+    annotations:
+      cert-manager.io/cluster-issuer: letsencrypt-prod
+    tls:
+      - secretName: argocd-tls
+        hosts:
+          - argo.oci.sebastiangreen.se
