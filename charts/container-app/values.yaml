@@ -1,5 +1,5 @@
 # charts/container-app/values.yaml
 image:
-  uri: ""
+  name: ""
   tag: latest
 port: 80

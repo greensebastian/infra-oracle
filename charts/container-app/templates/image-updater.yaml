@@ -8,6 +8,6 @@ spec:
     - namePattern: {{ .Release.Name }}
       images:
         - alias: {{ .Release.Name }}
-          imageName: "{{ .Values.image.uri }}:{{ .Values.image.tag }}"
+          imageName: "{{ .Values.image.name }}:{{ .Values.image.tag }}"
           commonUpdateSettings:
             updateStrategy: "digest"
