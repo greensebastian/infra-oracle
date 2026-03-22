@@ -13,10 +13,16 @@ spec:
       port: 80
       protocol: HTTP
       hostname: "*.oci.sebastiangreen.se"
+      allowedRoutes:
+        namespaces:
+          from: All
     - name: https
       port: 443
       protocol: HTTPS
       hostname: "*.oci.sebastiangreen.se"
+      allowedRoutes:
+        namespaces:
+          from: All
       tls:
         mode: Terminate
         certificateRefs:
