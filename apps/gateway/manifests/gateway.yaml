@@ -28,3 +28,16 @@ spec:
           - name: argocd-tls
             namespace: istio-system
             kind: Secret
+    - name: satisfactory-https
+      port: 443
+      protocol: HTTPS
+      hostname: satisfactory.oci.sebastiangreen.se
+      allowedRoutes:
+        namespaces:
+          from: All
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: satisfactory-tls
+            namespace: istio-system
+            kind: Secret
