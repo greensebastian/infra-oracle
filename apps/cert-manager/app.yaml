@@ -18,6 +18,9 @@ spec:
       helm:
         valueFiles:
           - $values/apps/cert-manager/values.yaml
+    - repoURL: https://github.com/greensebastian/infra-oracle
+      targetRevision: main
+      path: apps/cert-manager/manifests
   destination:
     server: https://kubernetes.default.svc
     namespace: cert-manager
