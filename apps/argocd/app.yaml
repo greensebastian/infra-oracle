@@ -14,10 +14,20 @@ spec:
       ref: values
     - repoURL: https://argoproj.github.io/argo-helm
       chart: argo-cd
-      targetRevision: "*"
+      targetRevision: ">=0.0.0"
       helm:
         valueFiles:
           - $values/apps/argocd/values.yaml
+    - repoURL: https://github.com/greensebastian/infra-oracle
+      targetRevision: main
+      path: charts/httproute
+      helm:
+        releaseName: argocd
+        values: |
+          hostname: argo.oci.sebastiangreen.se
+          backendRef:
+            name: argocd-server
+            port: 80
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
@@ -27,3 +37,4 @@ spec:
       selfHeal: true
     syncOptions:
       - ServerSideApply=true
+      - CreateNamespace=true

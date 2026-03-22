@@ -1,0 +1,5 @@
+# charts/httproute/Chart.yaml
+apiVersion: v2
+name: httproute
+version: 0.1.0
+description: Simple HTTPRoute for Istio Gateway

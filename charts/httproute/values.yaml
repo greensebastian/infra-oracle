@@ -1,0 +1,5 @@
+# charts/httproute/values.yaml
+hostname: ""
+backendRef:
+  name: ""
+  port: 80

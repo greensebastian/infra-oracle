@@ -5,19 +5,21 @@ global:
 configs:
   params:
     server.insecure: true
+  cm:
+    url: https://argo.oci.sebastiangreen.se
     timeout.reconciliation: 30s
+    resource.customizations.health.argoproj.io_Application: |
+      hs = {}
+      hs.status = "Progressing"
+      hs.message = ""
+      if obj.status ~= nil then
+        if obj.status.health ~= nil then
+          hs.status = obj.status.health.status
+          hs.message = obj.status.health.message
+        end
+      end
+      return hs
 
 server:
   ingress:
-    enabled: true
-    ingressClassName: nginx
-    hosts:
-      - argo.oci.sebastiangreen.se
-    annotations:
-      cert-manager.io/cluster-issuer: letsencrypt-prod
-      nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
-      nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
-    tls:
-      - secretName: argocd-tls
-        hosts:
-          - argo.oci.sebastiangreen.se
+    enabled: false

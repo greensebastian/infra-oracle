@@ -1,8 +1,0 @@
-# apps/ingress-nginx/values.yaml
-controller:
-  hostNetwork: true
-  hostPort:
-    enabled: true
-  service:
-    type: ClusterIP
-  kind: DaemonSet

@@ -1,21 +1,20 @@
-# apps/root/app.yaml
+# apps/gateway/app.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-app
+  name: gateway
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "3"
 spec:
   project: default
-  source:
-    repoURL: https://github.com/greensebastian/infra-oracle
-    targetRevision: main
-    path: apps
-    directory:
-      recurse: true
-      include: "**/app.yaml"
+  sources:
+    - repoURL: https://github.com/greensebastian/infra-oracle
+      targetRevision: main
+      path: apps/gateway/manifests
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: istio-system
   syncPolicy:
     automated:
       prune: true

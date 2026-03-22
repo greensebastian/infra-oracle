@@ -1,21 +1,20 @@
-# apps/root/app.yaml
+# apps/istio-base/app.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: root-app
+  name: istio-base
   namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   project: default
-  source:
-    repoURL: https://github.com/greensebastian/infra-oracle
-    targetRevision: main
-    path: apps
-    directory:
-      recurse: true
-      include: "**/app.yaml"
+  sources:
+    - repoURL: https://istio-release.storage.googleapis.com/charts
+      chart: base
+      targetRevision: ">=0.0.0"
   destination:
     server: https://kubernetes.default.svc
-    namespace: argocd
+    namespace: istio-system
   syncPolicy:
     automated:
       prune: true

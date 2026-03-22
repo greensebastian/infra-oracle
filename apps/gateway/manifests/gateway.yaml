@@ -1,0 +1,24 @@
+# apps/gateway/manifests/gateway.yaml
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: main
+  namespace: istio-system
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  gatewayClassName: istio
+  listeners:
+    - name: http
+      port: 80
+      protocol: HTTP
+      hostname: "*.oci.sebastiangreen.se"
+    - name: https
+      port: 443
+      protocol: HTTPS
+      hostname: "*.oci.sebastiangreen.se"
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - name: wildcard-tls
+            kind: Secret

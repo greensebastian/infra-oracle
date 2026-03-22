@@ -1,0 +1,3 @@
+# apps/istiod/values.yaml
+meshConfig:
+  accessLogFile: /dev/stdout
