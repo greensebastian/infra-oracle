@@ -33,9 +33,3 @@ spec:
       selfHeal: true
     syncOptions:
       - CreateNamespace=true
-  ignoreDifferences:
-    - group: argoproj.io
-      kind: Application
-      name: satisfactory-visualizer
-      jsonPointers:
-        - /spec/sources/1/helm/parameters
