@@ -4,7 +4,7 @@ set -eu pipefail
 # k3s
 echo "[cloud-init.sh] Starting k3s install"
 export KUBECONFIG="/etc/rancher/k3s/k3s.yaml"
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik --disable servicelb --write-kubeconfig-mode 644" sh -
+curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable traefik --write-kubeconfig-mode 644" sh -
 until kubectl cluster-info 2>/dev/null; do sleep 5; done
 until kubectl get nodes 2>/dev/null | grep -q Ready; do sleep 5; done
 

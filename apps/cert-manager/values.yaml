@@ -1,3 +1,5 @@
 # apps/cert-manager/values.yaml
 crds:
   enabled: true
+config:
+  enableGatewayAPI: true
