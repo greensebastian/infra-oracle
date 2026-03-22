@@ -12,6 +12,10 @@ spec:
   hostnames:
     - "*.oci.sebastiangreen.se"
   rules:
+    - matches:
+        - path:
+            type: PathPrefix
+            value: /.well-known/acme-challenge
     - filters:
         - type: RequestRedirect
           requestRedirect:
