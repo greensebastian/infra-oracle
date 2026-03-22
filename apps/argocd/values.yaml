@@ -5,6 +5,7 @@ global:
 configs:
   params:
     server.insecure: true
+    controller.diff.server.side: true
   cm:
     url: https://argo.oci.sebastiangreen.se
     timeout.reconciliation: 30s
