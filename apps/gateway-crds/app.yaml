@@ -1,17 +1,17 @@
-# apps/istio-base/app.yaml
+# apps/gateway-crds/app.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: istio-base
+  name: gateway-crds
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-wave: "0"
 spec:
   project: default
-  sources:
-    - repoURL: https://istio-release.storage.googleapis.com/charts
-      chart: base
-      targetRevision: ">=0.0.0"
+  source:
+    repoURL: https://github.com/kubernetes-sigs/gateway-api
+    targetRevision: main
+    path: config/crd/standard
   destination:
     server: https://kubernetes.default.svc
     namespace: istio-system
