@@ -10,7 +10,7 @@ spec:
       namespace: istio-system
       sectionName: https
   hostnames:
-    - { { .Values.hostname } }
+    - { { .Values.hostname | quote } }
   rules:
     - backendRefs:
         - name: { { .Values.backendRef.name } }
