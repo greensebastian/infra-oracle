@@ -14,8 +14,8 @@ spec:
   rules:
     - matches:
         - path:
-            type: PathPrefix
-            value: /.well-known/acme-challenge
+            type: RegularExpression
+            value: "^(?!.*\\.well-known/acme-challenge).*$" # Not containing acme-challenge
     - filters:
         - type: RequestRedirect
           requestRedirect:
