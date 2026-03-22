@@ -15,7 +15,7 @@ spec:
     - matches:
         - path:
             type: RegularExpression
-            value: "^(?!\\/\\.well-known\\/acme-challenge).*$" # Not containing acme-challenge
+            value: "disabled" # Not containing acme-challenge
     - filters:
         - type: RequestRedirect
           requestRedirect:
