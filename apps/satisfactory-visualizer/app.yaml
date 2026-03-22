@@ -1,0 +1,35 @@
+# apps/satisfactory-visualizer/app.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: satisfactory-visualizer
+  namespace: argocd
+spec:
+  project: default
+  sources:
+    - repoURL: https://github.com/greensebastian/infra-oracle
+      targetRevision: main
+      ref: values
+    - repoURL: https://github.com/greensebastian/infra-oracle
+      targetRevision: main
+      path: charts/container-app
+      helm:
+        releaseName: satisfactory-visualizer
+        valueFiles:
+          - $values/apps/satisfactory-visualizer/values.yaml
+    - repoURL: https://github.com/greensebastian/infra-oracle
+      targetRevision: main
+      path: charts/httproute
+      helm:
+        releaseName: satisfactory-visualizer
+        valueFiles:
+          - $values/apps/satisfactory-visualizer/values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: satisfactory-visualizer
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true

@@ -1,0 +1,11 @@
+# apps/satisfactory-visualizer/values.yaml
+name: satisfactory-visualizer
+image:
+  uri: ghcr.io/greensebastian/games-satisfactory-visualizer
+  tag: latest
+port: 3000
+hostname: satisfactory.oci.sebastiangreen.se
+gatewayListenerName: satisfactory-https
+backendRef:
+  name: satisfactory-visualizer
+  port: 3000

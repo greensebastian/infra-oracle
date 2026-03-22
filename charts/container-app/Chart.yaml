@@ -1,0 +1,5 @@
+# charts/container-app/Chart.yaml
+apiVersion: v2
+name: container-app
+version: 0.1.0
+description: Simple container app deployment
