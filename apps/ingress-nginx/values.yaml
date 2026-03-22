@@ -1,4 +1,8 @@
 # apps/ingress-nginx/values.yaml
 controller:
+  hostNetwork: true
+  hostPort:
+    enabled: true
   service:
-    type: LoadBalancer
+    type: ClusterIP
+  kind: DaemonSet
