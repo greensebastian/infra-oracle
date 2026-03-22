@@ -1,4 +1,4 @@
-# bootstrap/root-app.yaml
+# apps/root/app.yaml
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -12,6 +12,7 @@ spec:
     path: apps
     directory:
       recurse: true
+      include: "**/app.yaml"
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd

@@ -10,7 +10,7 @@ spec:
   project: default
   sources:
     - repoURL: https://github.com/greensebastian/infra-oracle
-      targetRevision: HEAD
+      targetRevision: main
       ref: values
     - repoURL: https://charts.jetstack.io
       chart: cert-manager

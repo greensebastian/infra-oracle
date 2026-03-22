@@ -23,4 +23,4 @@ helm upgrade --install argocd argo/argo-cd \
 
 # Bootstrap Argo root app
 echo "[cloud-init.sh] Applying root app"
-kubectl apply -f https://raw.githubusercontent.com/greensebastian/infra-oracle/main/bootstrap/root-app.yaml
+kubectl apply -f https://raw.githubusercontent.com/greensebastian/infra-oracle/main/apps/root/app.yaml
