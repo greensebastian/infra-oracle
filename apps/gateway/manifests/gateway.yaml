@@ -15,15 +15,16 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
-    - name: https
+    - name: argocd-https
       port: 443
       protocol: HTTPS
-      hostname: "*.oci.sebastiangreen.se"
+      hostname: argo.oci.sebastiangreen.se
       allowedRoutes:
         namespaces:
           from: All
       tls:
         mode: Terminate
         certificateRefs:
-          - name: wildcard-tls
+          - name: argocd-tls
+            namespace: istio-system
             kind: Secret

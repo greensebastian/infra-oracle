@@ -1,5 +1,6 @@
 # charts/httproute/values.yaml
 hostname: ""
+gatewayListenerName: ""
 backendRef:
   name: ""
   port: 80

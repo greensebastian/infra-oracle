@@ -28,6 +28,7 @@ spec:
           backendRef:
             name: argocd-server
             port: 80
+            gatewayListenerName: argocd-https
   destination:
     server: https://kubernetes.default.svc
     namespace: argocd
