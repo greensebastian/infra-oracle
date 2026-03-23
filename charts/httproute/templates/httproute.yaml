@@ -4,6 +4,8 @@ kind: HTTPRoute
 metadata:
   name: {{ .Release.Name }}
   namespace: {{ .Release.Namespace }}
+  annotations:
+    link.argocd.argoproj.io/external-link: "https://{{ .Values.hostname }}"
 spec:
   parentRefs:
     - name: main
