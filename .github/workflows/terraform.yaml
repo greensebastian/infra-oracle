@@ -33,6 +33,11 @@ jobs:
         name: Set artifact name
         run: echo "artifact_name=tfplan-${{ github.run_id }}.bin" >> "$GITHUB_OUTPUT"
 
+      - name: Set up OCI config
+        run: |
+          mkdir -p ~/.oci
+          echo "${{ secrets.OCI_CONFIG_FILE }}" > ~/.oci/config
+
       - name: Azure login (OIDC)
         uses: azure/login@v2
         with:
@@ -61,6 +66,9 @@ jobs:
         run: terraform plan -input=false -out "${{ steps.meta.outputs.artifact_name }}"
         env:
           TF_VAR_subscription_id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+          TF_VAR_compartment_ocid: ${{ secrets.OCI_COMPARTMENT_OCID }}
+          TF_VAR_ssh_public_key: ${{ vars.OCI_SSH_PUBLIC_KEY }}
+          OCI_PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
 
       - name: Upload plan artifact
         uses: actions/upload-artifact@v4
@@ -102,6 +110,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Set up OCI config
+        run: |
+          mkdir -p ~/.oci
+          echo "${{ secrets.OCI_CONFIG_FILE }}" > ~/.oci/config
+
       - name: Azure login (OIDC)
         uses: azure/login@v2
         with:
@@ -134,3 +147,5 @@ jobs:
       - name: Terraform Apply (using approved plan)
         working-directory: ./terraform
         run: terraform apply -input=false -auto-approve "${{ needs.plan.outputs.plan-artifact-name }}"
+        env:
+          OCI_PRIVATE_KEY: ${{ secrets.OCI_PRIVATE_KEY }}
